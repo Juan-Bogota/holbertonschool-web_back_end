@@ -6,7 +6,7 @@ from base_caching import BaseCaching
 
 
 class FIFOCache(BaseCaching):
-    """FIFO Cache Class """
+    """FIFO Cache Class"""
 
     def __init__(self):
         """Constructor Method"""
@@ -14,12 +14,11 @@ class FIFOCache(BaseCaching):
 
     def put(self, key, item):
         """Put Method"""
-        if key is None or item is None:
-            return
-        self.cache_data[key] = item
-        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-            print('DISCARD: {}'.format(sorted(self.cache_data.keys())[0]))
-            del self.cache_data[sorted(self.cache_data.keys())[0]]
+        if key is not None and item is not None:
+            self.cache_data[key] = item
+            if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+                print('DISCARD: {}'.format(sorted(self.cache_data.keys())[0]))
+                del self.cache_data[sorted(self.cache_data.keys())[0]]
 
     def get(self, key):
         """Get Method"""
