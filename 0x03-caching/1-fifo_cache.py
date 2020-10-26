@@ -29,10 +29,9 @@ class FIFOCache(BaseCaching):
 
         if len(self.cache_data) > BaseCaching.MAX_ITEMS:
             discard = self.list_name[0]
-            if discard:
-                print('DISCARD: {}'.format(discard))
-                del self.cache_data[discard]
-                self.list_name.pop(0)
+            print('DISCARD: {}'.format(discard))
+            del self.cache_data[discard]
+            self.list_name.pop(0)
 
     def get(self, key):
         """Get Method"""
