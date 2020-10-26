@@ -22,6 +22,10 @@ class FIFOCache(BaseCaching):
 
         if key not in self.list_name:
             self.list_name.append(key)
+        else:
+            if self.list_name[-1] != key:
+                self.list_name.remove(key)
+                self.list_name.append(key)
 
         if len(self.cache_data) > BaseCaching.MAX_ITEMS:
             print('DISCARD: {}'.format(self.list_name[0]))
