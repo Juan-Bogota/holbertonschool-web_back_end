@@ -8,10 +8,6 @@ from base_caching import BaseCaching
 class BasicCache(BaseCaching):
     """Basic Cache Class"""
 
-    def __init__(self):
-        """Constructor Method"""
-        super().__init__()
-
     def put(self, key, item):
         """Put Method"""
         if key is not None or item is not None:
