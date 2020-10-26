@@ -17,10 +17,12 @@ class FIFOCache(BaseCaching):
         """Put Method"""
         if key is None or item is None:
             return
-        self.cache_data[key] = item
+
         if key in self.list_name:
             self.list_name.remove(key)
         self.list_name.append(key)
+
+        self.cache_data[key] = item
 
         if len(self.cache_data) > BaseCaching.MAX_ITEMS:
             print('DISCARD: {}'.format(self.list_name[0]))
