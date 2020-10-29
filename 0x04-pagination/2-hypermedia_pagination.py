@@ -58,10 +58,10 @@ class Server:
 
         my_dict['data'] = self.get_page(page, page_size)
 
-        my_dict['next_page'] = page + 1 if total_page != page else None
+        my_dict['next_page'] = page + 1 if total_page > page else None
 
         my_dict['prev_page'] = page - 1 if page != 1 else None
 
-        my_dict['total_pages'] = int(total_page)
+        my_dict['total_pages'] = math.ceil(total_page)
 
         return my_dict
