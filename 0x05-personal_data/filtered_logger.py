@@ -10,8 +10,8 @@ def filter_datum(fields: List[str], redaction: str, message: str,
                  separator: str) -> str:
     """filter datum"""
 
-    message = re.sub(fields[0] + '=.*?' + separator, 'password=' +
+    message = re.sub(fields[0] + '=.*?' + separator, fields[0] + '=' +
                      redaction + separator, message)
     return re.sub(fields[1] + '=([0-9]{2}\\D[0-9]{2}\\D[0-9]{4})' +
-                  separator, 'date_of_birth=' + redaction + separator,
+                  separator, fields[1] + '=' + redaction + separator,
                   message)
