@@ -8,6 +8,7 @@ import logging
 from os import getenv
 import mysql.connector
 
+
 PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'password')
 
 
@@ -80,6 +81,7 @@ def main() -> None:
         logger.info(message)
     cursor.close()
     db.close()
+
 
 if __name__ == "__main__":
     main()
