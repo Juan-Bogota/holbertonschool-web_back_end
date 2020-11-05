@@ -23,6 +23,7 @@ def not_found(error) -> str:
 
 @app.errorhandler(401)
 def resource_not_found(e):
+    """Unauthorized Handler Code: 401"""
     return jsonify({"error": "Unauthorized"}), 401
 
 if __name__ == "__main__":
