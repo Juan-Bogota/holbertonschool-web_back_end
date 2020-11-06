@@ -3,7 +3,7 @@
 Module: Basic Auth
 """
 from api.v1.auth.auth import Auth
-import base64
+from base64 import b64decode
 
 
 class BasicAuth(Auth):
@@ -26,7 +26,7 @@ class BasicAuth(Auth):
         if not isinstance(base64_authorization_header, str):
             return None
         try:
-            decoded = base64.b64decode(
+            decoded = b64decode(
                 base64_authorization_header)
         except:
             return None
