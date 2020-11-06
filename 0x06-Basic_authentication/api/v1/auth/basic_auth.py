@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Module: Basic Auth
+Module: Basic Auth, Extract base64 Authorization,
+Decode Base64 Authorization
 """
 from api.v1.auth.auth import Auth
 from base64 import b64decode
@@ -23,12 +24,14 @@ class BasicAuth(Auth):
                                            ) -> str:
         """Method: Decode Base64 Authorization
         Return a string"""
-        if base64_authorization_header is None or\
-                not isinstance(base64_authorization_header, str):
+        if base64_authorization_header is None:
+            return None
+        if not isinstance(base64_authorization_header, str):
             return None
         try:
-            decoded = b64decode(
-                base64_authorization_header)
-            return decoded.decode('utf-8')
+            base = base64_authorization_header.encode('utf-8')
+            decoded = b64decode(base)
+            info = decoded.decode('utf-8')
+            return info
         except:
             return None
