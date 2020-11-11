@@ -15,10 +15,10 @@ def sessionLogin() -> str:
       - the status of the API
     """
     email = request.form.get('email')
-    if not email or email == '':
+    if not email:
         return jsonify({"error": "email missing"}), 400
     password = request.form.get('password')
-    if not password or password == '':
+    if not password:
         return jsonify({"error": "password missing"}), 400
     users = User.search({'email': email})
     if not users:
@@ -30,5 +30,4 @@ def sessionLogin() -> str:
             SESSION_NAME = getenv('SESSION_NAME')
             resp.set_cookie(SESSION_NAME, auth.create_session(item.id))
             return resp
-        else:
-            return jsonify({"error": "wrong password"}), 404
+    return jsonify({"error": "wrong password"}), 404
