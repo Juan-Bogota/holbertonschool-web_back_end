@@ -26,8 +26,9 @@ def sessionLogin() -> str:
     for item in users:
         if item.is_valid_password(password):
             from api.v1.app import auth
+            session_id = auth.create_session(item.id)
             resp = jsonify(item.to_json())
             SESSION_NAME = getenv('SESSION_NAME')
-            resp.set_cookie(SESSION_NAME, auth.create_session(item.id))
+            resp.set_cookie(SESSION_NAME, session_id)
             return resp
     return jsonify({"error": "wrong password"}), 404
