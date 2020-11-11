@@ -20,7 +20,10 @@ def sessionLogin() -> str:
     password = request.form.get('password')
     if not password or password == '':
         return jsonify({"error": "password missing"}), 400
-    users = User.search({'email': email})
+    try:
+        users = User.search({'email': email})
+    except:
+        return jsonify({"error": "no user found for this email"}), 404
     if len(users) == 0:
         return jsonify({"error": "no user found for this email"}), 404
     for item in users:
