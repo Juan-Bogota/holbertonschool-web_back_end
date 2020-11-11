@@ -22,15 +22,15 @@ def sessionLogin() -> str:
         return jsonify({"error": "password missing"}), 400
     try:
         users = User.search({'email': email})
-    except:
-        return jsonify({"error": "no user found for this email"}), 404
-    if len(users) == 0:
-        return jsonify({"error": "no user found for this email"}), 404
-    for item in users:
-        if item.is_valid_password(password):
-            from api.v1.app import auth
-            resp = jsonify(item.to_json())
-            SESSION_NAME = getenv('SESSION_NAME')
-            resp.set_cookie(SESSION_NAME, auth.create_session(item.id))
-            return resp
+        if len(users) == 0:
+            return jsonify({"error": "no user found for this email"}), 404
+        for item in users:
+            if item.is_valid_password(password):
+                from api.v1.app import auth
+                resp = jsonify(item.to_json())
+                SESSION_NAME = getenv('SESSION_NAME')
+                resp.set_cookie(SESSION_NAME, auth.create_session(item.id))
+                return resp
+    except Exception:
+        return None
     return jsonify({"error": "wrong password"}), 404
