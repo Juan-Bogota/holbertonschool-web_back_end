@@ -50,7 +50,7 @@ class DB:
                 return ed_user
         raise InvalidRequestError
 
-    def update_user(self, user_id: int, **kwargs: dict) -> None:
+    def update_user(self, user_id: int, **kwargs) -> None:
         """ Method: use to locate the user to update"""
         columns = User.__table__.columns._data.keys()
         myId = self.find_user_by(id=user_id)
