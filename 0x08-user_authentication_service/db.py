@@ -55,6 +55,7 @@ class DB:
         myId = self.find_user_by(id=user_id)
         setattr(myId, key, value)
         """
+        columns = User.__table__.columns._data.keys()
         for key in kwargs.keys():
             if key not in columns:
                 raise ValueError
