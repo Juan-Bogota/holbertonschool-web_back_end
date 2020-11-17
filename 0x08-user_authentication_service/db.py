@@ -53,14 +53,12 @@ class DB:
     def update_user(self, user_id: int, **kwargs: dict) -> User:
         """ Method: use to locate the user to update"""
         c_names = User.__table__.columns._data.keys()
-        if not kwargs:
-            raise ValueError
         for key, value in kwargs.items():
-            if key in c_names:
-                session = (update(User)
-                           .where(User.id == user_id)
-                           .values(**kwargs))
-                self._session.execute(session)
-                self._session.commit()
-                return None
-        raise ValueError
+            if key not in c_names:
+                raise ValueError
+        session = (update(User)
+                   .where(User.id == user_id)
+                   .values(**kwargs))
+        self._session.execute(session)
+        self._session.commit()
+        return None
