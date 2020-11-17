@@ -34,8 +34,8 @@ class DB:
         return ed_user
 
     def find_user_by(self, **kwargs) -> User:
-        """ Finds user by key word args
-        Return: First row found in the users table as filtered by kwargs
+        """ This method takes in arbitrary keyword arguments 
+        Return: First row found in the users table as filtered by arguments
         """
         if not kwargs:
             raise InvalidRequestError
