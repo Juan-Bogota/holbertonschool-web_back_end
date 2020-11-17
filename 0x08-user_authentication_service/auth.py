@@ -3,7 +3,7 @@
 import bcrypt
 
 def _hash_password(password: str) -> str:
-    """Method: Return a string is a salted hash of the input password"""
+    """Method: Return a string hash"""
     passwd = password.encode('utf-8')
     salt = bcrypt.gensalt()
     hashed = bcrypt.hashpw(passwd, salt)
