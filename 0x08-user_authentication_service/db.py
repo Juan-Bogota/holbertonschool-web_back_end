@@ -33,9 +33,10 @@ class DB:
         self._session.commit()
         return ed_user
 
-    def find_user_by(self, **kwargs: dict) -> User:
+    def find_user_by(self, **kwargs) -> User:
         """This method takes in arbitrary keyword arguments and returns the first
-        row found in the table as filtered by the method's input arguments."""
+        row found in the table as filtered by the method's input arguments.
+        Return: First row found"""
         if not kwargs:
             raise InvalidRequestError
 
