@@ -25,7 +25,7 @@ class DB:
             self.__session = DBSession()
         return self.__session
 
-    def add_user(self, email: str, hashed_password: str) -> TypeVar('User'):
+    def add_user(self, email: str, hashed_password: str) -> User:
         """Method: The method should save the user to the database."""
         ed_user = User(email=email, hashed_password=hashed_password)
         self._session.add(ed_user)
