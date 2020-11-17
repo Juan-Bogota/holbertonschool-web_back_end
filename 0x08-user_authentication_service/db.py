@@ -53,6 +53,7 @@ class DB:
     def update_user(self, user_id: int, **kwargs) -> None:
         """ Method: use to locate the user to update"""
         columns = User.__table__.columns._data.keys()
+        """
         myId = self.find_user_by(id=user_id)
         for key, value in kwargs.items():
             if key not in columns:
@@ -60,11 +61,11 @@ class DB:
             setattr(myId, key, value)
         self._session.commit()
         """
-        #for key in kwargs.keys():
-        #    if key not in columns:
-        #       raise ValueError
-        #session = (update(User)
-        #           .where(User.id == user_id)
-        #           .values(**kwargs))
-        #self._session.execute(session)
-        #self._session.commit()"""
+        for key in kwargs.keys():
+            if key not in columns:
+                raise ValueError
+        session = (update(User)
+                   .where(User.id == user_id)
+                   .values(**kwargs))
+        self._session.execute(session)
+        self._session.commit()
