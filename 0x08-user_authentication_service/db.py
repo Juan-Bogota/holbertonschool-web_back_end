@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Module: Database and SQLAlchemy Libraries"""
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, update
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import InvalidRequestError
@@ -49,3 +49,16 @@ class DB:
                     raise NoResultFound
                 return ed_user
         raise InvalidRequestError
+
+    def update_user(self, user_id: int, **kwargs) -> User:
+        """ Method: use to locate the user to update"""
+        c_names = User.__table__.columns._data.keys()
+        for key, value in kwargs.items():
+            if key in c_names:
+                session = (update(User)
+                           .where(User.id == user_id)
+                           .values(**kwargs))
+                self._session.execute(session)
+                self._session.commit()
+                return None
+        raise ValueError
