@@ -51,15 +51,9 @@ class DB:
         raise InvalidRequestError
 
     def update_user(self, user_id: int, **kwargs) -> None:
-        """ Method: use to locate the user to update"""
-        columns = User.__table__.columns._data.keys()
-        """
+        """ Method: use to locate the user to update
         myId = self.find_user_by(id=user_id)
-        for key, value in kwargs.items():
-            if key not in columns:
-                raise ValueError
-            setattr(myId, key, value)
-        self._session.commit()
+        setattr(myId, key, value)
         """
         for key in kwargs.keys():
             if key not in columns:
