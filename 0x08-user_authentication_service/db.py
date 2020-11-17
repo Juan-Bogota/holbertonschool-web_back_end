@@ -34,7 +34,7 @@ class DB:
         return ed_user
 
     def find_user_by(self, **kwargs) -> User:
-        """ This method takes in arbitrary keyword arguments 
+        """ Method: Takes in arbitrary keyword arguments(kwargs)
         Return: First row found in the users table as filtered by arguments
         """
         if not kwargs:
