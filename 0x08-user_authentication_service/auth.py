@@ -3,6 +3,7 @@
 
 import bcrypt
 
+
 def _hash_password(password: str) -> str:
     """Method: Return a string hash of the input password"""
     passwd = password.encode('utf-8')
