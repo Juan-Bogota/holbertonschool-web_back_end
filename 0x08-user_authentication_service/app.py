@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Module: Basic Flask App"""
-from flask import (Flask, jsonify, request, abort, redirect)
+from flask import Flask, jsonify, request, abort, redirect
 from auth import Auth
 
 AUTH = Auth()
@@ -64,7 +64,7 @@ def profile():
 
 @app.route('/reset_password', methods=['POST'], strict_slashes=False)
 def get_reset_password_token():
-    """Function: Reset Password route /reset_password"""
+    """Reset Password route /reset_password"""
     email = request.form.get('email')
     if email is None:
         abort(403)
