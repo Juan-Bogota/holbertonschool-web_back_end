@@ -10,8 +10,7 @@ from typing import (
     Dict,
     Callable,
 )
-import unittest
-from parameterized import parameterized
+
 
 __all__ = [
     "access_nested_map",
@@ -20,15 +19,7 @@ __all__ = [
 ]
 
 
-class TestAccessNestedMap(unittest.TestCase):
-    """Class: Test Access Nested Map Function"""
-    @parameterized.expand([({"a": 1}, ("a",), 1),
-                           ({"a": {"b": 2}}, ("a",), {"b": 2}),
-                           ({"a": {"b": 2}}, ("a", "b"), 2)])
-    def test_access_nested_map(self, nested_map: Mapping,
-                               path: Sequence, expected: Any) -> Any:
-        """Method: Test Access Nested Map"""
-        self.assertEqual(access_nested_map(nested_map, path), expected)
+
 
 
 def access_nested_map(nested_map: Mapping, path: Sequence) -> Any:
