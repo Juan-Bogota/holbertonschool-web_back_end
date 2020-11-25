@@ -51,3 +51,14 @@ class TestGithubOrgClient(unittest.TestCase):
             self.assertEqual(repos, ['google'])
             mock_req.assert_called_once()
             mock_get.assert_called_once()
+
+    @parameterized.expand([
+        ({"license": {"key": "my_license"}}, "my_license", True),
+        ({"license": {"key": "other_license"}}, "my_license", False),
+    ])
+    def test_has_license(
+         self, key: dict, license_key: str, expected: bool) -> Any:
+        """Method: Test has license"""
+        test = GithubOrgClient('google')
+        test_license = test.has_license(key, license_key)
+        self.assertEqual(test_license, expected)
