@@ -6,18 +6,21 @@ from parameterized import parameterized
 from utils import access_nested_map, get_json, memoize
 from typing import Mapping, Sequence, Any
 from unittest.mock import patch
+from client import GithubOrgClient
 
 
 class TestGithubOrgClient(unittest.TestCase):
     """Class: Test GitHub Org Client"""
     @parameterized.expand([
-        ("http://google.com", {"payload": True}),
-        ("http://abc.com", {"payload": False}),
+        ("google", {"payload": True}),
+        ("abc",  {"payload": True}),
     ])
-    @patch('test_client.get_json')
+    @patch('client.get_json')
     def test_org(
-         self, test_url: str, test_payload: dict,  mock_get: Any) -> Any:
-        """Method: Test Org"""
+         self, test_url: str, test_payload: dict, mock_get: Any) -> Any:
+        """Method: Test Org - Git Hub"""
         mock_get.return_value = test_payload
-        data = get_json(test_url)
-        self.assertEqual(data, test_payload)
+        mock = GithubOrgClient(test_url)
+        info = mock.org
+
+        self.assertEqual(test_payload, info)
