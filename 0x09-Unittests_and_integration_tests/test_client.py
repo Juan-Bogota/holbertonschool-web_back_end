@@ -46,7 +46,7 @@ class TestGithubOrgClient(unittest.TestCase):
                           '_public_repos_url',
                           new_callable=PropertyMock,
                           return_value={"repos_url": "google"}) as mock_req:
-            thing = GithubOrgClient('google')
+            thing = GithubOrgClient('gooogle')
             repos = thing.public_repos()
             self.assertEqual(['google'], repos)
             mock_req.assert_called_once()
