@@ -48,6 +48,6 @@ class TestGithubOrgClient(unittest.TestCase):
                           return_value="google") as mock_req:
             thing = GithubOrgClient('google')
             repos = thing.public_repos()
-            self.assertEqual(['google'], repos)
+            self.assertEqual(repos, ['google'])
             mock_req.assert_called_once()
             mock_get.assert_called_once()
