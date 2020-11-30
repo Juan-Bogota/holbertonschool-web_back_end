@@ -16,11 +16,11 @@ refresh()
 
 class Config:
     """Class: Configure available languages in our app"""
-    self.LANGUAGES = ["en", "fr"]
+    LANGUAGES = ["en", "fr"]
 
     def get_languages():
         """Method: Get Languages"""
-        return self.LANGUAGES
+        return LANGUAGES
 
 
 @app.route('/', methods=['GET'], strict_slashes=False)
