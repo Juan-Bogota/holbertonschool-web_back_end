@@ -1,26 +1,24 @@
 #!/usr/bin/env python3
 """Module: Basic Flask App"""
 
-from flask import Flask, render_template, refresh
-from flask_babel import Babel
+from flask import Flask, render_template
+from flask_babel import Babel, refresh
 from os import getenv
 
 
 app = Flask(__name__)
 babel = Babel(app)
-config = Config()
-app.config['BABEL_DEFAULT_LOCALE'] = config.get_languages()
-app.config['BABEL_DEFAULT_TIMEZONE'] = 'UTC'
-refresh()
 
 
 class Config:
     """Class: Configure available languages in our app"""
     LANGUAGES = ["en", "fr"]
 
-    def get_languages():
-        """Method: Get Languages"""
-        return LANGUAGES
+
+config = Config()
+app.config['BABEL_DEFAULT_LOCALE'] = config.LANGUAGES
+app.config['BABEL_DEFAULT_TIMEZONE'] = 'UTC'
+refresh()
 
 
 @app.route('/', methods=['GET'], strict_slashes=False)
