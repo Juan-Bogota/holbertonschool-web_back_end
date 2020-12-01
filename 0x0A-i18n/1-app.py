@@ -13,11 +13,11 @@ babel = Babel(app)
 class Config:
     """Class: Configure available languages in our app"""
     LANGUAGES = ["en", "fr"]
-
+    app.config['BABEL_DEFAULT_LOCALE'] = LANGUAGES
+    app.config['BABEL_DEFAULT_TIMEZONE'] = 'UTC'
 
 config = Config()
-app.config['BABEL_DEFAULT_LOCALE'] = config.LANGUAGES
-app.config['BABEL_DEFAULT_TIMEZONE'] = 'UTC'
+
 refresh()
 
 
