@@ -7,6 +7,7 @@ from typing import Union
 
 
 class Cache:
+    """Class: Cache"""
     def __init__(self):
         """Method: Constructor Cache"""
         self._redis = redis.Redis()
