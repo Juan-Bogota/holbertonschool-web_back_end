@@ -16,7 +16,7 @@ def get_page(url: str) -> str:
     redis.set(f"cached:{url}", incr)
     redis.incr(f"count:{url}")
     redis.setex(f"cached:{url}", 10, redis.get(f"cached:{url}"))
-    return resp.text
+    return response.text
 
 
 if __name__ == "__main__":
