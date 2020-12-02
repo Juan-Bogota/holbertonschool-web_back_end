@@ -4,15 +4,16 @@
 import redis
 import uuid
 from typing import Union, Optional, Callable
+from functools import wraps
 
 
 def count_calls(method: Callable) -> Callable:
-    """Method; count calls"""
+    """Method: count calls"""
     key = method.__qualname__
 
     @wraps(method)
     def wrapper(self, *args, **kwargs):
-        """ Wrapper for decorator functionality """
+        """ Method: Wrapper """
         self._redis.incr(key)
         return method(self, *args, **kwargs)
 
@@ -33,7 +34,7 @@ class Cache:
         """ Method: should generate a random key with uuid4() and
             set in redis key: value and return the key"""
         mykey = str(uuid.uuid4())
-        self._redis.set(key, data)
+        self._redis.set(mykey, data)
         return mykey
 
     def get(self, key: str,
