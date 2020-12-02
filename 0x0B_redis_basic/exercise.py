@@ -41,5 +41,5 @@ class Cache:
         data = self._redis.get(key)
         try: 
             return int(data.decode("utf-8"))
-        except:
+        except Exception:
             return 0
