@@ -39,4 +39,7 @@ class Cache:
     def get_int(sefl, key: str) -> int:
         """Method: Return Get Int in data"""
         data = self._redis.get(key)
-        return int(data.decode("utf-8"))
+        try: 
+            return int(data.decode("utf-8"))
+        except:
+            return 0
