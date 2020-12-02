@@ -3,7 +3,7 @@
     to use redis as a simple cache"""
 import redis
 import uuid
-from typing import Union
+from typing import Union, Any
 
 
 class Cache:
@@ -15,7 +15,7 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-    def store(self, data: Union[str, bytes, int, float]) -> str:
+    def store(self, data: Any) -> str:
         """ Method: should generate a random key with uuid4() and
             set in redis key: value and return the key"""
         key = str(uuid.uuid4())
