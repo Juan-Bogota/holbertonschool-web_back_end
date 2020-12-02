@@ -18,4 +18,6 @@ def get_page(my_url: str) -> str:
     redis.setex(f"cached:{my_url}", 10, r.get(f"cached:{my_url}"))
     return resp.text
 
-get_page('http://slowwly.robertomurray.co.uk')
+
+if __name__ == "__main__":
+    get_page('http://slowwly.robertomurray.co.uk')
