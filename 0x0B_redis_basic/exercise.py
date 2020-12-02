@@ -30,3 +30,13 @@ class Cache:
         if fn:
             return fn(data)
         return data
+
+    def get_str(self, key: str) -> str:
+        """Method: Return Get Str in data"""
+        data = self._redis.get(key)
+        return data.decode("utf-8")
+
+    def get_int(sefl, key: str) -> int:
+        """Method: Return Get Int in data"""
+        data = self._redis.get(key)
+        return int(data.decode("utf-8"))
