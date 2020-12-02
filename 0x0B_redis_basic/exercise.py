@@ -22,12 +22,11 @@ class Cache:
         self._redis.set(key, data)
         return mykey
 
-    def get(self, key: str, fn: callable = None) -> Union[str, bytes, int, float]:
+    def get(self, key: str,
+            fn: callable = None) -> Union[str, bytes, int, float]:
         """Method: This callable will be used to convert the data
         back to the desired format."""
         data = self._redis.get(key)
         if fn:
             return fn(data)
         return data
-
-
