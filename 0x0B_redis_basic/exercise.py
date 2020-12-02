@@ -7,7 +7,8 @@ from typing import Union
 
 
 class Cache:
-    """Class: Cache"""
+    """ Class: Cache"""
+
     def __init__(self):
         """ Method: Constructor Cache, initialize REDIS and flush the
             instance using flushdb"""
