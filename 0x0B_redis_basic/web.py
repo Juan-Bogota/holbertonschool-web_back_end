@@ -9,13 +9,13 @@ redis = redis.Redis()
 incr = 0
 
 
-def get_page(my_url: str) -> str:
+def get_page(url: str) -> str:
     """Function: expiring web cache and tracker"""
 
-    response = requests.get(my_url)
-    redis.set(f"cached:{my_url}", incr)
-    redis.incr(f"count:{my_url}")
-    redis.setex(f"cached:{my_url}", 10, r.get(f"cached:{my_url}"))
+    response = requests.get(url)
+    redis.set(f"cached:{url}", incr)
+    redis.incr(f"count:{url}")
+    redis.setex(f"cached:{url}", 10, r.get(f"cached:{url}"))
     return resp.text
 
 
