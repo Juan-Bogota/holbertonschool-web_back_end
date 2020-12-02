@@ -3,7 +3,7 @@
     to use redis as a simple cache"""
 import redis
 import uuid
-from typing import Union
+from typing import Union, Optional, Callable
 
 
 class Cache:
@@ -23,7 +23,7 @@ class Cache:
         return mykey
 
     def get(self, key: str,
-            fn: callable = None) -> Union[str, bytes, int, float]:
+            fn: Optional[Callable] = None) -> Union[str, bytes, int, float]:
         """Method: This callable will be used to convert the data
         back to the desired format."""
         data = self._redis.get(key)
