@@ -6,6 +6,19 @@ import uuid
 from typing import Union, Optional, Callable
 
 
+def count_calls(method: Callable) -> Callable:
+    """Method; count calls"""
+    key = method.__qualname__
+
+    @wraps(method)
+    def wrapper(self, *args, **kwargs):
+        """ Wrapper for decorator functionality """
+        self._redis.incr(key)
+        return method(self, *args, **kwargs)
+
+    return wrapper
+
+
 class Cache:
     """ Class: Cache"""
 
@@ -15,6 +28,7 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
+    @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """ Method: should generate a random key with uuid4() and
             set in redis key: value and return the key"""
@@ -38,9 +52,8 @@ class Cache:
 
     def get_int(self, key: str) -> int:
         """Method: Return Get Int in data"""
-        info = self._redis.get(key)
-        try: 
-            info = int(data.decode("utf-8"))
+        data = self._redis.get(key)
+        try:
+            return int(data.decode("utf-8"))
         except Exception:
-            info = 0
-        return info
+            return 0
