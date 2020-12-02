@@ -36,7 +36,7 @@ class Cache:
         data = self._redis.get(key)
         return data.decode("utf-8")
 
-    def get_int(sefl, key: str) -> int:
+    def get_int(self, key: str) -> int:
         """Method: Return Get Int in data"""
         data = self._redis.get(key)
         try: 
