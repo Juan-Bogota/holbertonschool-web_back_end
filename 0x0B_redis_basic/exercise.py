@@ -38,8 +38,9 @@ class Cache:
 
     def get_int(self, key: str) -> int:
         """Method: Return Get Int in data"""
-        data = self._redis.get(key)
+        info = self._redis.get(key)
         try: 
-            return int(data.decode("utf-8"))
+            info = int(data.decode("utf-8"))
         except Exception:
-            return 0
+            info = 0
+        return info
