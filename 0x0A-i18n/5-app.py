@@ -47,7 +47,7 @@ def get_user():
     """Function: Get User"""
     try:
         myId = int(request.args.get('login_as'))
-    except ValueError:
+    except (ValueError, TypeError):
         return None
     if myId in users.keys():
         return users.get(myId)
