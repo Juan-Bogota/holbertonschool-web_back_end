@@ -4,7 +4,7 @@ DROP PROCEDURE IF EXISTS ComputeAverageWeightedScoreForUsers;
 DELIMITER $$
 CREATE PROCEDURE ComputeAverageWeightedScoreForUsers()
 BEGIN
-  UPDATE 
+  UPDATE users,
     (SELECT newTable.id, (SUM(score * weight)/SUM(weight)) AS average 
     FROM users AS newTable 
     INNER JOIN corrections ON newTable.id = corrections.user_id 
