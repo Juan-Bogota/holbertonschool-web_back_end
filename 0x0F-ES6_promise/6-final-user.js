@@ -11,12 +11,12 @@ const handleProfileSignup = (firstName, lastName, fileName) => {
           status.push({ status: 'fulfilled', value: res });
         })
         .catch((err) => {
-          status.push({ status: 'reject', value: err.message });
+          status.push({ status: 'reject', value: err });
         });
       return status;
     })
     .catch((err) => {
-      status.push({ status: 'reject', value: err.message });
+      status.push({ status: 'reject', value: err });
     });
 };
 
