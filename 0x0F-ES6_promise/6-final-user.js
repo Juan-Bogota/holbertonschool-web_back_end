@@ -15,7 +15,7 @@ export default async function handleProfileSignup(
     user.value = signUp;
   } catch (error) {
     user.status = 'rejected';
-    user.value = error;
+    user.value = error.toString();
   }
   try {
     const upload = await uploadPhoto(fileName);
@@ -23,7 +23,7 @@ export default async function handleProfileSignup(
     photo.value = upload;
   } catch (error) {
     photo.status = 'rejected';
-    photo.value = error;
+    photo.value = error.toString();
   }
   return [user, photo];
 }
